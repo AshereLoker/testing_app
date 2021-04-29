@@ -13,7 +13,7 @@ class AuthenticationScreen extends StatefulWidget {
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
   final _navigatorKey = GlobalKey<NavigatorState>();
 
-  NavigatorState? get _navigator => _navigatorKey.currentState;
+  NavigatorState get _navigator => _navigatorKey.currentState;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +24,13 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                _navigator!.pushAndRemoveUntil<void>(
+                _navigator?.pushAndRemoveUntil<void>(
                   HomeScreen().route(),
                   (route) => false,
                 );
                 break;
               case AuthenticationStatus.unauthenticated:
-                _navigator!.pushAndRemoveUntil<void>(
+                _navigator?.pushAndRemoveUntil<void>(
                   SignInScreen().route(),
                   (route) => false,
                 );

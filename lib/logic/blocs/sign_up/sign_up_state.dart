@@ -14,10 +14,10 @@ class SignUpState extends Equatable {
   final FormzStatus status;
 
   SignUpState copyWith({
-    EmailModel? email,
-    PasswordModel? password,
-    ConfirmedPasswordModel? confirmedPassword,
-    FormzStatus? status,
+    EmailModel email,
+    PasswordModel password,
+    ConfirmedPasswordModel confirmedPassword,
+    FormzStatus status,
   }) {
     return SignUpState(
       email: email ?? this.email,

@@ -13,7 +13,7 @@ class EmailModel extends FormzInput<String, EmailValidatorError> {
   );
 
   @override
-  EmailValidatorError? validator(String value) {
+  EmailValidatorError validator(String value) {
     return _emailRegExp.hasMatch(value) ? null : EmailValidatorError.invalid;
   }
 }

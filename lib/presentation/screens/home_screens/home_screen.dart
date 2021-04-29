@@ -30,12 +30,6 @@ class HomeScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 4.0),
-            CircleAvatar(
-              child: Image.network(user.photo),
-            ),
-            const SizedBox(height: 4.0),
-            Text(user.email),
-            const SizedBox(height: 4.0),
             Text(user.email),
           ],
         ),

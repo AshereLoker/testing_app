@@ -5,7 +5,7 @@ import '../../logic/blocs/sign_in/sign_in_bloc.dart';
 import '../screens/auntentication_screens/sign_up_screen.dart';
 
 class SignInForm extends StatelessWidget {
-  const SignInForm({Key? key}) : super(key: key);
+  const SignInForm({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

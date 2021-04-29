@@ -13,16 +13,16 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc(
-      {required AuthenticationRepository authenticationRepository})
-      : _authenticationRepository = authenticationRepository,
+  AuthenticationBloc({
+    @required AuthenticationRepository authenticationRepository,
+  })  : _authenticationRepository = authenticationRepository,
         super(const AuthenticationState.unknown()) {
     _userSubscription = _authenticationRepository.user
         .listen((user) => add(AuthenticationUserChanged(user)));
   }
 
   final AuthenticationRepository _authenticationRepository;
-  StreamSubscription<UserModel>? _userSubscription;
+  StreamSubscription<UserModel> _userSubscription;
 
   @override
   Stream<AuthenticationState> mapEventToState(

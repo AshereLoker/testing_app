@@ -4,10 +4,10 @@ import 'package:meta/meta.dart';
 @immutable
 class UserModel extends Equatable {
   const UserModel({
-    required this.email,
-    required this.id,
-    required this.name,
-    required this.photo,
+    @required this.email,
+    @required this.id,
+    @required this.name,
+    @required this.photo,
   });
 
   final String email;

@@ -1,3 +1,4 @@
+import 'package:awesome_authentication_app/presentation/screens/auntentication_screens/authentication_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -5,8 +6,10 @@ import '../../data/repositories/authentication_repository.dart';
 import '../../logic/blocs/authentication/authentication_bloc.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key, required this.authenticationRepository})
-      : super(key: key);
+  const App({
+    Key key,
+    @required this.authenticationRepository,
+  }) : super(key: key);
 
   final AuthenticationRepository authenticationRepository;
 
@@ -18,6 +21,7 @@ class App extends StatelessWidget {
         create: (_) => AuthenticationBloc(
           authenticationRepository: authenticationRepository,
         ),
+        child: AuthenticationScreen(),
       ),
     );
   }

@@ -8,14 +8,14 @@ class ConfirmedPasswordModel
     extends FormzInput<String, ConfirmedPasswordValidationError> {
   const ConfirmedPasswordModel.pure({this.password = ''}) : super.pure('');
   const ConfirmedPasswordModel.dirty({
-    required this.password,
+    @required this.password,
     String value = '',
   }) : super.dirty(value);
 
   final String password;
 
   @override
-  ConfirmedPasswordValidationError? validator(String value) {
+  ConfirmedPasswordValidationError validator(String value) {
     return password == value ? null : ConfirmedPasswordValidationError.invalid;
   }
 }

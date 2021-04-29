@@ -9,7 +9,7 @@ abstract class SignInEvent extends Equatable {
 
 class SignInEmailChanged extends SignInEvent {
   SignInEmailChanged({
-    required this.email,
+    @required this.email,
   });
 
   final String email;
@@ -20,7 +20,7 @@ class SignInEmailChanged extends SignInEvent {
 
 class SignInPasswordChanged extends SignInEvent {
   SignInPasswordChanged({
-    required this.password,
+    @required this.password,
   });
 
   final String password;

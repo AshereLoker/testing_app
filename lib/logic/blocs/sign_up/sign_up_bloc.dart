@@ -14,8 +14,8 @@ part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc({
-    required AuthenticationRepository authenticationRepository,
-  })   : _authenticationRepository = authenticationRepository,
+    @required AuthenticationRepository authenticationRepository,
+  })  : _authenticationRepository = authenticationRepository,
         super(SignUpState());
 
   final AuthenticationRepository _authenticationRepository;

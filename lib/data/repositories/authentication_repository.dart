@@ -2,6 +2,7 @@ import 'package:awesome_authentication_app/data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:meta/meta.dart';
 
 class SignUpFailure implements Exception {}
 
@@ -15,8 +16,8 @@ class SignOutFailure implements Exception {}
 
 class AuthenticationRepository {
   AuthenticationRepository({
-    FirebaseAuth? firebaseAuth,
-    FacebookLogin? facebookLogin,
+    FirebaseAuth firebaseAuth,
+    FacebookLogin facebookLogin,
   })  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         _facebookLogin = facebookLogin ?? FacebookLogin();
 
@@ -24,8 +25,8 @@ class AuthenticationRepository {
   final FacebookLogin _facebookLogin;
 
   Future<void> signUp({
-    required String email,
-    required String password,
+    @required String email,
+    @required String password,
   }) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
@@ -54,8 +55,8 @@ class AuthenticationRepository {
   }
 
   Future<void> signInWithEmailAndPassword({
-    required String email,
-    required String password,
+    @required String email,
+    @required String password,
   }) async {
     try {
       await _firebaseAuth
@@ -89,7 +90,6 @@ class AuthenticationRepository {
 
 extension on User {
   UserModel get toUser {
-    return UserModel(
-        email: email!, id: uid, name: displayName!, photo: photoURL!);
+    return UserModel(email: email, id: uid, name: displayName, photo: photoURL);
   }
 }
