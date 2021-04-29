@@ -25,7 +25,7 @@ class PasswordUpdateBloc
     PasswordUpdateEvent event,
   ) async* {
     if (event is PasswordUpdateNewPasswordChanged) {
-      yield _mapPasswordChangedToState(event, state);
+      yield _mapNewPasswordChangedToState(event, state);
     } else if (event is PasswordUpdateConfirmedPasswordChanged) {
       yield _mapConfirmedChangedUpdatedToState(event, state);
     } else if (event is PasswordUpdateSubmitted) {
@@ -33,19 +33,19 @@ class PasswordUpdateBloc
     }
   }
 
-  PasswordUpdateState _mapPasswordChangedToState(
+  PasswordUpdateState _mapNewPasswordChangedToState(
     PasswordUpdateNewPasswordChanged event,
     PasswordUpdateState state,
   ) {
-    final password = PasswordModel.dirty(event.password);
+    final newPassword = PasswordModel.dirty(event.newPassword);
     final confirmedPassword = ConfirmedPasswordModel.dirty(
-      password: password.value,
+      password: newPassword.value,
       value: state.confirmedPassword.value,
     );
     return state.copyWith(
-      password: password,
+      password: newPassword,
       confirmedPassword: confirmedPassword,
-      status: Formz.validate([password, state.confirmedPassword]),
+      status: Formz.validate([newPassword, state.confirmedPassword]),
     );
   }
 
@@ -54,12 +54,12 @@ class PasswordUpdateBloc
     PasswordUpdateState state,
   ) {
     final confirmedPassword = ConfirmedPasswordModel.dirty(
-      password: state.password.value,
+      password: state.newPassword.value,
       value: event.confirmedPassword,
     );
     return state.copyWith(
       confirmedPassword: confirmedPassword,
-      status: Formz.validate([confirmedPassword, state.password]),
+      status: Formz.validate([confirmedPassword, state.newPassword]),
     );
   }
 
@@ -70,20 +70,11 @@ class PasswordUpdateBloc
     if (state.status.isValidated) {
       yield state.copyWith(status: FormzStatus.submissionInProgress);
       try {
-        final isValidate = await _authenticationRepository
-            .validatePassword(
-          password: state.currentPassword,
-        )
+        await _authenticationRepository
+            .updatePassword(newPassword: state.newPassword.value)
             .timeout(Duration(seconds: 20), onTimeout: () {
-          throw TimeoutException('Password validation error');
+          throw TimeoutException('Update password failure');
         });
-        if (isValidate) {
-          await _authenticationRepository
-              .updatePassword(newPassword: state.password.value)
-              .timeout(Duration(seconds: 20), onTimeout: () {
-            throw TimeoutException('Update password failure');
-          });
-        }
         yield state.copyWith(status: FormzStatus.submissionSuccess);
       } on Exception catch (_) {
         yield state.copyWith(status: FormzStatus.submissionFailure);

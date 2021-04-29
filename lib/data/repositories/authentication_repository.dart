@@ -83,26 +83,6 @@ class AuthenticationRepository {
     }
   }
 
-  Future<bool> validatePassword({
-    @required String password,
-  }) async {
-    // ignore: await_only_futures
-    final firebaseUser = await _firebaseAuth.currentUser;
-    final credential = EmailAuthProvider.credential(
-      email: firebaseUser.email,
-      password: password,
-    );
-    try {
-      final result = await firebaseUser
-          .reauthenticateWithCredential(credential)
-          .timeout(Duration(seconds: 20));
-      return result.user != null;
-    } on Exception catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
   Future<void> updatePassword({
     @required String newPassword,
   }) async {

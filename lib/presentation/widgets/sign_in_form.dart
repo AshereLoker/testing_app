@@ -76,11 +76,12 @@ class _PasswordInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('signInForm_passwordInput_textField'),
-          onChanged: (email) =>
-              context.read<SignInBloc>().add(SignInEmailChanged(email: email)),
+          onChanged: (password) => context
+              .read<SignInBloc>()
+              .add(SignInPasswordChanged(password: password)),
           decoration: InputDecoration(
             labelText: 'User password',
-            errorText: state.email.invalid ? 'Invalid password' : null,
+            errorText: state.password.invalid ? 'Invalid password' : null,
           ),
         );
       },
@@ -92,7 +93,7 @@ class _SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
-      buildWhen: (prev, current) => prev.status != current.status,
+      buildWhen: (prevState, curState) => prevState.status != curState.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()

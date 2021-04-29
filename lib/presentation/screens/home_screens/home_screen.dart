@@ -1,3 +1,4 @@
+import 'package:awesome_authentication_app/presentation/screens/home_screens/update_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../logic/blocs/authentication/authentication_bloc.dart';
@@ -31,6 +32,12 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             const SizedBox(height: 4.0),
             Text(user.email),
+            const SizedBox(height: 4.0),
+            TextButton(
+              onPressed: () => Navigator.of(context)
+                  .push<void>(UpdatePasswordScreen.route()),
+              child: Text('Change Password'),
+            )
           ],
         ),
       ),

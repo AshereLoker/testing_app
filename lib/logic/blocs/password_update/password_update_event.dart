@@ -9,13 +9,13 @@ abstract class PasswordUpdateEvent extends Equatable {
 
 class PasswordUpdateNewPasswordChanged extends PasswordUpdateEvent {
   PasswordUpdateNewPasswordChanged({
-    @required this.password,
+    @required this.newPassword,
   });
 
-  final String password;
+  final String newPassword;
 
   @override
-  List<Object> get props => [password];
+  List<Object> get props => [newPassword];
 }
 
 class PasswordUpdateConfirmedPasswordChanged extends PasswordUpdateEvent {
