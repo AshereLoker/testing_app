@@ -31,6 +31,7 @@ dependencies:
   formz: ^0.4.0
   flutter_bloc: ^7.0.0
   flutter_facebook_login: ^3.0.0
+  pedantic: ^1.11.0
 
 
   # The following adds the Cupertino Icons font to your application.

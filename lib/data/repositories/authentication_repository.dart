@@ -1,7 +1,5 @@
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:test_app/data/models/user_model.dart';
 
@@ -44,7 +42,7 @@ class AuthenticationRepository {
       final result =
           await _facebookLogin.logIn(['email']).timeout(Duration(seconds: 20));
       final credential =
-          FacebookAuthProvider.credential(result.accessToken.token);
+          FacebookAuthProvider?.credential(result.accessToken.token);
       await _firebaseAuth
           .signInWithCredential(credential)
           .timeout(Duration(seconds: 20), onTimeout: () {
