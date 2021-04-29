@@ -30,7 +30,7 @@ class AuthenticationBloc
     if (event is AuthenticationUserChanged) {
       yield _mapAuthenticationUserChangedToState(event);
     } else if (event is AuthenticationLogoutRequested) {
-      unawaited(_authenticationRepository.logOut());
+      unawaited(_authenticationRepository.signOut());
     }
   }
 
