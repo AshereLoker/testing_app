@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/data/repositories/authentication_repository.dart';
-import 'package:test_app/logic/blocs/authentication/authentication_bloc.dart';
+
+import '../../data/repositories/authentication_repository.dart';
+import '../../logic/blocs/authentication/authentication_bloc.dart';
 
 class App extends StatelessWidget {
   const App({Key? key, required this.authenticationRepository})

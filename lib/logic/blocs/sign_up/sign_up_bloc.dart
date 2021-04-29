@@ -4,10 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:meta/meta.dart';
-import 'package:test_app/data/models/confirmed_password_model.dart';
-import 'package:test_app/data/models/email_model.dart';
-import 'package:test_app/data/models/password_model.dart';
-import 'package:test_app/data/repositories/authentication_repository.dart';
+import '../../../data/models/confirmed_password_model.dart';
+import '../../../data/models/email_model.dart';
+import '../../../data/models/password_model.dart';
+import '../../../data/repositories/authentication_repository.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

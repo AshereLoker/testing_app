@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:test_app/logic/blocs/sign_in/sign_in_bloc.dart';
+import '../../logic/blocs/sign_in/sign_in_bloc.dart';
+import '../screens/auntentication_screens/sign_up_screen.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);

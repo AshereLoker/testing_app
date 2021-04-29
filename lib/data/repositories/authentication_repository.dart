@@ -1,7 +1,7 @@
+import 'package:awesome_authentication_app/data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:test_app/data/models/user_model.dart';
 
 class SignUpFailure implements Exception {}
 
