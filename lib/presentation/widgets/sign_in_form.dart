@@ -1,3 +1,4 @@
+import 'package:awesome_authentication_app/presentation/screens/auntentication_screens/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -43,6 +44,7 @@ class SignInForm extends StatelessWidget {
             const SizedBox(
               height: 8.0,
             ),
+            _ResetPasswordButton(),
           ],
         ),
       ),
@@ -142,12 +144,28 @@ class _SignUpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return TextButton(
-      key: const Key('loginForm_createAccount_flatButton'),
+      key: const Key('signInForm_createAccount_flatButton'),
       child: Text(
         'CREATE ACCOUNT',
         style: TextStyle(color: theme.primaryColor),
       ),
       onPressed: () => Navigator.of(context).push<void>(SignUpScreen.route()),
+    );
+  }
+}
+
+class _ResetPasswordButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return TextButton(
+      key: const Key('signInForm_resetPassword_flatButton'),
+      child: Text(
+        'Forget password?',
+        style: TextStyle(color: theme.primaryColor),
+      ),
+      onPressed: () =>
+          Navigator.of(context).push<void>(ResetPasswordScreen().route()),
     );
   }
 }

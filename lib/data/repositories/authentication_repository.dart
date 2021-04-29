@@ -95,6 +95,9 @@ class AuthenticationRepository {
     }
   }
 
+  Future<void> resetPassword({@required String email}) =>
+      _firebaseAuth.sendPasswordResetEmail(email: email);
+
   Stream<UserModel> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       return firebaseUser == null ? UserModel.empty : firebaseUser.toUser;
