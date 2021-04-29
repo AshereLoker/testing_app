@@ -14,6 +14,8 @@ class SignInFirebaseWithFacebookFailure implements Exception {}
 
 class SignOutFailure implements Exception {}
 
+class PasswordUpdateFailure implements Exception {}
+
 class AuthenticationRepository {
   AuthenticationRepository({
     FirebaseAuth firebaseAuth,
@@ -78,6 +80,38 @@ class AuthenticationRepository {
       ]).timeout(Duration(seconds: 10));
     } on Exception {
       throw SignOutFailure();
+    }
+  }
+
+  Future<bool> validatePassword({
+    @required String password,
+  }) async {
+    // ignore: await_only_futures
+    final firebaseUser = await _firebaseAuth.currentUser;
+    final credential = EmailAuthProvider.credential(
+      email: firebaseUser.email,
+      password: password,
+    );
+    try {
+      final result = await firebaseUser
+          .reauthenticateWithCredential(credential)
+          .timeout(Duration(seconds: 20));
+      return result.user != null;
+    } on Exception catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<void> updatePassword({
+    @required String newPassword,
+  }) async {
+    try {
+      // ignore: await_only_futures
+      final firebaseUser = await _firebaseAuth.currentUser;
+      firebaseUser.updatePassword(newPassword);
+    } on Exception {
+      throw PasswordUpdateFailure();
     }
   }
 
